@@ -1,9 +1,15 @@
 #!/bin/bash
 
-env | grep API
-
 # 初始化 bindings 变量
 bindings=""
+
+# 处理环境变量中包含 API 的变量
+while IFS='=' read -r name value; do
+    if [[ $name == *"API"* ]]; then
+        value=$(echo $value | sed 's/^"\(.*\)"$/\1/')
+        bindings+="--binding ${name}=${value} "
+    fi
+done < <(env)
 
 # 检查 .env 文件是否存在
 if [ -f .env ]; then
@@ -16,10 +22,10 @@ if [ -f .env ]; then
             bindings+="--binding ${name}=${value} "
         fi
     done < .env
-
-    # 清理末尾的空格
-    bindings=$(echo $bindings | sed 's/[[:space:]]*$//')
 fi
 
-# 如果没有 bindings，输出空字符串
+# 清理末尾的空格
+bindings=$(echo $bindings | sed 's/[[:space:]]*$//')
+
+# 输出结果
 echo $bindings
