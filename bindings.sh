@@ -1,5 +1,7 @@
 #!/bin/bash
 
+env | grep API
+
 # 初始化 bindings 变量
 bindings=""
 
