@@ -24,5 +24,3 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"      
     command: pnpm run dockerstart
-    profiles:
-      - production  # This service only runs in the production profile
