@@ -99,7 +99,8 @@ export function getModel(provider: string, model: string, env: Env, apiKeys?: Re
     case 'Anthropic':
       return getAnthropicModel(apiKey, model);
     case 'OpenAI':
-      return getOpenAIModel(apiKey, model);
+      console.log('case OpenAI:', baseURL, apiKey, model);
+      return getOpenAILikeModel(baseURL, apiKey, model);
     case 'Groq':
       return getGroqModel(apiKey, model);
     case 'OpenRouter':
@@ -107,7 +108,7 @@ export function getModel(provider: string, model: string, env: Env, apiKeys?: Re
     case 'Google':
       return getGoogleModel(apiKey, model)
     case 'OpenAILike':
-      return getOpenAILikeModel(baseURL,apiKey, model);
+      return getOpenAILikeModel(baseURL, apiKey, model);
     case 'Deepseek':
       return getDeepseekModel(apiKey, model)
     case 'Mistral':

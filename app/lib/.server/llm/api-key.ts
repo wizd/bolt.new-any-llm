@@ -40,6 +40,8 @@ export function getAPIKey(cloudflareEnv: Env, provider: string, userApiKeys?: Re
 
 export function getBaseURL(cloudflareEnv: Env, provider: string) {
   switch (provider) {
+    case 'OpenAI':
+      return env.OPENAI_API_BASE_URL || cloudflareEnv.OPENAI_API_BASE_URL;
     case 'OpenAILike':
       return env.OPENAI_LIKE_API_BASE_URL || cloudflareEnv.OPENAI_LIKE_API_BASE_URL;
     case 'Ollama':
